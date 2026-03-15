@@ -1,49 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
- 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novatask</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novatask</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
 
-<div class="app-container">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="brand">
-        <img src="imgs/nova logo.png" alt="NovaTask">
-        <span class="brand-name">NovaTask</span>
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">
+          <img src="imgs/nova logo.png" alt="NovaTask">
+          <span class="brand-name">NovaTask</span>
+        </div>
+        <nav class="primary-nav">
+          <a href="#" class="nav-item-active"><span class="material-symbols-outlined">home</span>Dashboard</a>
+          <a href="#" class="nav-item"><span class="material-symbols-outlined">featured_play_list</span>Tasks</a>
+          <a href="#" class="nav-item"><span class="material-symbols-outlined">folder</span>Projects</a>
+          <a href="#" class="nav-item"><span class="material-symbols-outlined">calendar_today</span>Calendar</a>
+          <a href="#" class="nav-item"><span class="material-symbols-outlined">people</span>Users</a>
+          <a href="#" class="nav-item"><span class="material-symbols-outlined">help</span>Help</a>
+          <a href="#" class="nav-item"><span class="material-symbols-outlined">settings</span>Settings</a>
+        </nav>
       </div>
-      <nav class="primary-nav">
-        <a href="#" class="nav-item-active"><span class="material-symbols-outlined">home</span>Dashboard</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">featured_play_list</span>Tasks</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">folder</span>Projects</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">calendar_today</span>Calendar</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">people</span>Users</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">help</span>Help</a>
-        <a href="#" class="nav-item"><span class="material-symbols-outlined">settings</span>Settings</a>
-      </nav>
-    </div>
 
-    <div class="sidebar-bottom">
-      <button class="add-task-btn"> <span class="material-symbols-outlined">add</span> Add new task</button>
-      <div class="profile-card">
-        <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar">
-        <div class="profile-info">
-          <p class="user-name">Realer koinas</p>
-          <p class="user-email">uylasjust@hotmail.com</p>
+      <div class="sidebar-bottom">
+        <button class="add-task-btn" id="add-task-btn"> <span class="material-symbols-outlined">add</span> Add new
+          task</button>
+        <div class="profile-card">
+          <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar">
+          <div class="profile-info">
+            <p class="user-name">Realer koinas</p>
+            <p class="user-email">uylasjust@hotmail.com</p>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="task-modal">
+        <div class="modal-header">
+          <h2>Add New Task</h2>
+          <button class="close-modal-btn" id="closeModalBtn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="taskForm" autocomplete="off">
+            <div class="form-group">
+              <label for="taskTitle">Task Title</label>
+              <input type="text" id="taskTitle" placeholder="Enter task title" required>
+            </div>
+            <div class="form-group">
+              <label for="taskDesc">Description</label>
+              <textarea id="taskDesc" placeholder="Enter task description" rows="3" required></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="taskDate">Due Date</label>
+                <input type="date" id="taskDate" required>
+              </div>
+              <div class="form-group">
+                <label for="taskCategory">Category</label>
+                <select id="taskCategory">
+                  <option value="personal development">Personal development</option>
+                  <option value="portfolio design">Portfolio design</option>
+                  <option value="masters' class">Masters' class</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="taskType">Task Type</label>
+                <select id="taskType">
+                  <option value="self">Self Task</option>
+                  <option value="group">Group Work</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="taskContributors">Contributors</label>
+                <input type="text" id="taskContributors" placeholder="E.g. Ali, Sarah (if group)">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="cancel-modal-btn" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="save-task-btn" form="taskForm">Save Task</button>
         </div>
       </div>
     </div>
 
-  </aside>
-
-  <div class="overlay" id="overlay"></div>
-
-  <main class="main-content">
+    <main class="main-content">
       <header class="main-header">
         <div class="header-left">
           <button class="menu-btn" id="menuToggle"><span class="material-symbols-outlined">menu</span></button>
@@ -52,7 +111,7 @@
 
         <div class="header-center">
           <div class="search-wrapper">
-              <span class="material-symbols-outlined">search</span>
+            <span class="material-symbols-outlined">search</span>
             <input type="text" placeholder="Type to search tasks..." class="search-input">
           </div>
         </div>
@@ -63,382 +122,363 @@
             <span class="material-symbols-outlined">notifications</span>
           </div>
           <div class="date-chip">
-              <span class="material-symbols-outlined">calendar_today</span>
+            <span class="material-symbols-outlined">calendar_today</span>
             <span>Jan. 11, 2026</span>
           </div>
         </div>
-        </header>
+      </header>
 
       <div class="dashboard-body">
 
-          <div class="project-summary">
-              <div class="project-summ-head">
-                  <h2 class="project-summ-title">Tasks Summary</h2>
-              </div>
+        <div class="project-summary">
+          <div class="project-summ-head">
+            <h2 class="project-summ-title">Tasks Summary</h2>
+          </div>
 
-              <div class="projects-summary-grid">
+          <div class="projects-summary-grid">
 
-                  <div class="pd-task-card">
-                      <div class="pd-inner-card">
+            <div class="pd-task-card">
+              <div class="pd-inner-card">
 
-                        <div class="texts">
-                          <h2 class="section-topic">Personal development</h2>
-                          <div class="indicators">
-                            <div class="first-indicator">
-                              <h1>213 </h1> 
-                              <span class="tasks-pw">tasks per week</span>
-                            </div>
+                <div class="texts">
+                  <h2 class="section-topic">Personal development</h2>
+                  <div class="indicators">
+                    <div class="first-indicator">
+                      <h1>213 </h1>
+                      <span class="tasks-pw">tasks per week</span>
+                    </div>
 
-                            <div class="second-indicator">
-                              <span class="material-symbols-outlined">arrow_upward_alt</span>
-                            <h3> <span class="percent"> 36% </span> from last cycle </h3>
-                            </div>
-                            
+                    <div class="second-indicator">
+                      <span class="material-symbols-outlined">arrow_upward_alt</span>
+                      <h3> <span class="percent"> 36% </span> from last cycle </h3>
+                    </div>
 
-                          </div>
-                        </div>
 
-                        <button class="vm">
-                          <span class="material-symbols-outlined">arrow_circle_right</span>
-                        </button>
-
-                      </div>
                   </div>
+                </div>
 
-                  <div class="pd-task-card">
-                      <div class="pfd-inner-card">
-
-                        <div class="texts">
-                          <h2 class="section-topic">Portfolio design</h2>
-                          <div class="indicators">
-                            <div class="first-indicator">
-                              <h1>432 </h1> 
-                              <span class="tasks-pw">tasks per week</span>
-                            </div>
-
-                            <div class="second-indicator">
-                              <span class="material-symbols-outlined">arrow_upward_alt</span>
-                            <h3> <span class="percent"> 72% </span> from last cycle </h3>
-                            </div>
-                            
-
-                          </div>
-                        </div>
-
-                        <button class="pfd">
-                          <span class="material-symbols-outlined">arrow_circle_right</span>
-                        </button>
-
-                      </div>
-                  </div>
-
-                  <div class="pd-task-card">
-                      <div class="msc-inner-card">
-
-                        <div class="texts">
-                          <h2 class="section-topic">Masters' class</h2>
-                          <div class="indicators">
-                            <div class="first-indicator">
-                              <h1>59 </h1> 
-                              <span class="tasks-pw">tasks per week</span>
-                            </div>
-
-                            <div class="second-indicator">
-                              <span class="material-symbols-outlined">arrow_upward_alt</span>
-                            <h3> <span class="percent"> 12% </span> from last cycle </h3>
-                            </div>
-                            
-
-                          </div>
-                        </div>
-
-                        <button class="msc">
-                          <span class="material-symbols-outlined">arrow_circle_right</span>
-                        </button>
-
-                      </div>
-                  </div>
+                <button class="vm">
+                  <span class="material-symbols-outlined">arrow_circle_right</span>
+                </button>
 
               </div>
+            </div>
 
+            <div class="pd-task-card">
+              <div class="pfd-inner-card">
+
+                <div class="texts">
+                  <h2 class="section-topic">Portfolio design</h2>
+                  <div class="indicators">
+                    <div class="first-indicator">
+                      <h1>432 </h1>
+                      <span class="tasks-pw">tasks per week</span>
+                    </div>
+
+                    <div class="second-indicator">
+                      <span class="material-symbols-outlined">arrow_upward_alt</span>
+                      <h3> <span class="percent"> 72% </span> from last cycle </h3>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <button class="pfd">
+                  <span class="material-symbols-outlined">arrow_circle_right</span>
+                </button>
+
+              </div>
+            </div>
+
+            <div class="pd-task-card">
+              <div class="msc-inner-card">
+
+                <div class="texts">
+                  <h2 class="section-topic">Masters' class</h2>
+                  <div class="indicators">
+                    <div class="first-indicator">
+                      <h1>59 </h1>
+                      <span class="tasks-pw">tasks per week</span>
+                    </div>
+
+                    <div class="second-indicator">
+                      <span class="material-symbols-outlined">arrow_upward_alt</span>
+                      <h3> <span class="percent"> 12% </span> from last cycle </h3>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <button class="msc">
+                  <span class="material-symbols-outlined">arrow_circle_right</span>
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="task-upcoming">
+
+          <div class="project-summ-head">
+            <h2 class="project-summ-title">Upcoming tasks</h2>
+          </div>
+
+          <div class="task-upcoming-grid">
+            <div class="pd-upcom-task">
+
+              <div class="pdu-inner-card">
+
+                <div class="statuspill-textcontent">
+                  <div class="card-header-top">
+                    <div class="status-pill-pf">
+                      <span class="material-symbols-outlined">circle</span>
+                      <p class="status-text">Pending</p>
+                    </div>
+
+                    <button class="delete-task-btn">
+                      <span class="material-symbols-outlined">delete</span>
+                    </button>
+                  </div>
+
+                  <div class="text-content">
+                    <h2>Finance videos</h2>
+                    <p>Watch Finance related content to improve your knowledge.</p>
+                  </div>
+
+                </div>
+
+                <div class="datechip-collabs">
+                  <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span>
+                    <span>2026-03-12</span>
+                  </div>
+
+                  <div class="collaborators">
+                    <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
 
             </div>
 
-              <div class="task-upcoming">
+            <!-- <div class="pfd-upcom-task">
 
-                  <div class="project-summ-head">
-                  <h2 class="project-summ-title">Upcoming tasks</h2>
+              <div class="pdu-inner-card">
+
+                <div class="statuspill-textcontent">
+                  <div class="status-pill-pfd">
+                    <span class="material-symbols-outlined">circle</span>
+                    <p class="status-text">Overdue</p>
                   </div>
 
-                  <div class="task-upcoming-grid">
-                    <div class="pd-upcom-task">
-
-                    <div class="pdu-inner-card">
-
-                      <div class="statuspill-textcontent">
-                          <div class="status-pill-pf">
-                              <span class="material-symbols-outlined">circle</span>
-                              <p class="status-text">Pending</p>
-                          </div>
-
-                          <div class="text-content">
-                              <h2>Youtube videos</h2>
-                              <p>Create more reels content for personal growth and public speaking.</p>
-                          </div>
-
-                      </div>
-
-                      <div class="datechip-collabs">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11, 2026</span>
-                          </div>
-
-                          <div class="collaborators">
-                              <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                          </div>
-
-                      </div>
-
-
-
-
-                    </div>
-                      
-                    </div>
-
-                     <div class="pfd-upcom-task">
-
-                    <div class="pdu-inner-card">
-
-                      <div class="statuspill-textcontent">
-                          <div class="status-pill-pfd">
-                              <span class="material-symbols-outlined">circle</span>
-                              <p class="status-text">Overdue</p>
-                          </div>
-
-                          <div class="text-content">
-                              <h2>Youtube videos</h2>
-                              <p>Create more reels content for personal growth and public speaking.</p>
-                          </div>
-
-                      </div>
-
-                      <div class="datechip-collabs">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11, 2026</span>
-                          </div>
-
-                          <div class="collaborators">
-                              <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                          </div>
-
-                      </div>
-
-
-
-
-                    </div>
-                      
-                    </div>
-
-                     <div class="msc-upcom-task">
-
-                    <div class="pdu-inner-card">
-
-                      <div class="statuspill-textcontent">
-                          <div class="status-pill-msc">
-                              <span class="material-symbols-outlined">circle</span>
-                              <p class="status-text">In review</p>
-                          </div>
-
-                          <div class="text-content">
-                              <h2>Social scheduling for Mapxs</h2>
-                              <p>Schedule the content distribution for all social media pages of Mapxs.</p>
-                          </div>
-
-                      </div>
-
-                      <div class="datechip-collabs">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11, 2026</span>
-                          </div>
-
-                          <div class="collaborators">
-                              <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                          </div>
-
-                      </div>
-
-
-
-
-                    </div>
-                      
-                    </div>
-
-                     <div class="pd-upcom-task">
-
-                    <div class="pdu-inner-card">
-
-                      <div class="statuspill-textcontent">
-                          <div class="status-pill-pf2">
-                              <span class="material-symbols-outlined">circle</span>
-                              <p class="status-text">Completed</p>
-                          </div>
-
-                          <div class="text-content">
-                              <h2>Recap recordings from school.</h2>
-                              <p>Go over the recordings on the WhatsApp channel to help us prepare adequately for exam</p>
-                          </div>
-
-                      </div>
-
-                      <div class="datechip-collabs">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11, 2026</span>
-                          </div>
-
-                          <div class="collaborators">
-                              <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                          </div>
-
-                      </div>
-
-
-
-
-                    </div>
-                      
-                    </div>
-
-                     <div class="pfd-upcom-task">
-
-                    <div class="pdu-inner-card">
-
-                      <div class="statuspill-textcontent">
-                          <div class="status-pill-pf">
-                              <span class="material-symbols-outlined">circle</span>
-                              <p class="status-text">Pending</p>
-                          </div>
-
-                          <div class="text-content">
-                              <h2>Vorcel’s UX Audit</h2>
-                              <p>Revise Vorcel’s website for design gaps and inadequacies.</p>
-                          </div>
-
-                      </div>
-
-                      <div class="datechip-collabs">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Feb. 19, 2026</span>
-                          </div>
-
-                          <div class="collaborators">
-                              <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                          </div>
-
-                      </div>
-
-
-
-
-                    </div>
-                      
-                    </div>
-
-                    <div class="msc-upcom-task">
-
-                    <div class="pdu-inner-card">
-
-                      <div class="statuspill-textcontent">
-                          <div class="status-pill-msc">
-                              <span class="material-symbols-outlined">circle</span>
-                              <p class="status-text">In review</p>
-                          </div>
-
-                          <div class="text-content">
-                              <h2>Doordash Redesign</h2>
-                              <p>Design a new CRM dashboard for the Doordash agents in the country.</p>
-                          </div>
-
-                      </div>
-
-                      <div class="datechip-collabs">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Apr. 06, 2026</span>
-                          </div>
-
-                          <div class="collaborators">
-                              <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                              <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
-                          </div>
-
-                      </div>
-
-
-
-
-                    </div>
-                      
-                    </div>
+                  <div class="text-content">
+                    <h2>Youtube videos</h2>
+                    <p>Create more reels content for personal growth and public speaking.</p>
                   </div>
+
+                </div>
+
+                <div class="datechip-collabs">
+                  <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11,
+                      2026</span>
+                  </div>
+
+                  <div class="collaborators">
+                    <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                  </div>
+
+                </div>
+
+
+
+
               </div>
 
-                 <div class="notes">
+            </div> -->
 
-                  <div class="project-summ-head">
-                  <h2 class="project-summ-title">Notes</h2>
+            <!-- <div class="msc-upcom-task">
+
+              <div class="pdu-inner-card">
+
+                <div class="statuspill-textcontent">
+                  <div class="status-pill-msc">
+                    <span class="material-symbols-outlined">circle</span>
+                    <p class="status-text">In review</p>
                   </div>
 
-                  <div class="notes-grid">
-                    <div class="notes-card">
-                      <div class="note-text">
-                        <h2>Content Ideas for Youtube</h2>
-                        <p>Start the next video by addressing productivity burnout. Emphasize how "small wins" lead to the 213 tasks/week milestone we hit this cycle.</p>
-
-                      </div>
-
-                      <div class="date-edit-btns">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11, 2026</span>
-                          </div>
-
-                          <span class="material-symbols-outlined">ink_pen</span>
-
-                      </div>
-                    </div>
-
-                    <div class="notes-card">
-                      <div class="note-text">
-                        <h2>Speaking Workshop Prep</h2>
-                        <p>Look forpublic speaking workshops in February. Focus on improving hand gestures and reducing "um" and "ah" fillers in recordings.</p>
-
-                      </div>
-
-                      <div class="date-edit-btns">
-                        <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 01, 2026</span>
-                          </div>
-
-                          <span id="edit-btn" class="material-symbols-outlined">ink_pen</span>
-
-                      </div>
-                    </div>
-
+                  <div class="text-content">
+                    <h2>Social scheduling for Mapxs</h2>
+                    <p>Schedule the content distribution for all social media pages of Mapxs.</p>
                   </div>
+
+                </div>
+
+                <div class="datechip-collabs">
+                  <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11,
+                      2026</span>
+                  </div>
+
+                  <div class="collaborators">
+                    <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                  </div>
+
+                </div>
+
+
+
+
               </div>
-                  
-      </div> 
-  </main>
-</div>
+
+            </div> -->
+
+            <!-- <div class="pd-upcom-task">
+
+              <div class="pdu-inner-card">
+
+                <div class="statuspill-textcontent">
+                  <div class="status-pill-pf2">
+                    <span class="material-symbols-outlined">circle</span>
+                    <p class="status-text">Completed</p>
+                  </div>
+
+                  <div class="text-content">
+                    <h2>Recap recordings from school.</h2>
+                    <p>Go over the recordings on the WhatsApp channel to help us prepare adequately for exam</p>
+                  </div>
+
+                </div>
+
+                <div class="datechip-collabs">
+                  <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11,
+                      2026</span>
+                  </div>
+
+                  <div class="collaborators">
+                    <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                  </div>
+
+                </div>
 
 
 
 
-<script src="script.js"></script>
-    
+              </div>
+
+            </div> -->
+
+            <!-- <div class="pfd-upcom-task">
+
+              <div class="pdu-inner-card">
+
+                <div class="statuspill-textcontent">
+                  <div class="status-pill-pf">
+                    <span class="material-symbols-outlined">circle</span>
+                    <p class="status-text">Pending</p>
+                  </div>
+
+                  <div class="text-content">
+                    <h2>Vorcel’s UX Audit</h2>
+                    <p>Revise Vorcel’s website for design gaps and inadequacies.</p>
+                  </div>
+
+                </div>
+
+                <div class="datechip-collabs">
+                  <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Feb. 19,
+                      2026</span>
+                  </div>
+
+                  <div class="collaborators">
+                    <img src="imgs/sigmund-jzz_3jWMzHA-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/alex-suprun-ZHvM3XIOHoE-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                    <img src="imgs/leio-mclaren-L2dTmhQzx4Q-unsplash.jpg" alt="User Avatar" class="avatar-sm">
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
+
+            </div> -->
+
+          </div>
+        </div>
+
+        <div class="notes">
+
+          <div class="project-summ-head">
+            <h2 class="project-summ-title">Notes</h2>
+          </div>
+
+          <div class="notes-grid">
+            <div class="notes-card">
+              <div class="note-text">
+                <h2>Content Ideas for Youtube</h2>
+                <p>Start the next video by addressing productivity burnout. Emphasize how "small wins" lead to the 213
+                  tasks/week milestone we hit this cycle.</p>
+
+              </div>
+
+              <div class="date-edit-btns">
+                <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 11,
+                    2026</span>
+                </div>
+
+                <span class="material-symbols-outlined">ink_pen</span>
+
+              </div>
+            </div>
+
+            <div class="notes-card">
+              <div class="note-text">
+                <h2>Speaking Workshop Prep</h2>
+                <p>Look forpublic speaking workshops in February. Focus on improving hand gestures and reducing "um" and
+                  "ah" fillers in recordings.</p>
+
+              </div>
+
+              <div class="date-edit-btns">
+                <div class="date-chip2"> <span class="material-symbols-outlined">calendar_today</span> <span>Jan. 01,
+                    2026</span>
+                </div>
+
+                <span id="edit-btn" class="material-symbols-outlined">ink_pen</span>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+
+
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>
