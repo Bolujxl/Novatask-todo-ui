@@ -13,6 +13,7 @@ const categoryOfTask = document.getElementById('taskCategory')
 const typeOfTask = document.getElementById('taskType')
 const contributorsOfTask = document.getElementById('taskContributors')
 const closeModalBtn = document.getElementById('closeModalBtn');
+const taskGrid = document.querySelector('.task-upcoming-grid');
 
 
 // this is for the sidebar toggle
@@ -103,6 +104,9 @@ function retrieveTaskData() {
 window.addEventListener('DOMContentLoaded', retrieveTaskData);
 
 function addTaskCard() {
+  // Grab the grid container and empty it completely before we loop!
+  const taskGrid = document.querySelector('.task-upcoming-grid');
+  taskGrid.innerHTML = '';
 
   taskStore.forEach((task) => {
 
@@ -186,10 +190,10 @@ function addTaskCard() {
           taskStore.splice(indexToDelete, 1);
         }
 
-        localStorage.setItem('taskData', JSON.stringify(taskStore));
+        localStorage.setItem('novataskEntries', JSON.stringify(taskStore));
       }
     })
 
-    document.querySelector('.task-upcoming-grid').appendChild(taskCard)
+    taskGrid.appendChild(taskCard)
   })
 }
